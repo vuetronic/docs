@@ -1,6 +1,6 @@
 export default {
   github: 'https://github.com/vuetronic/framework',
-  docsRepositoryBase: 'https://github.com/shuding/nextra/blob/master',
+  docsRepositoryBase: 'https://github.com/vuetronic/docs/tree/main',
   titleSuffix: ' – Vuetronic',
   logo: (
     <>

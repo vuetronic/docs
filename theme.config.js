@@ -1,5 +1,5 @@
 export default {
-  github: 'https://github.com/vuetronic/framework',
+  github: 'https://github.com/vuetronic/support',
   docsRepositoryBase: 'https://github.com/vuetronic/docs/tree/main',
   titleSuffix: ' – Vuetronic',
   logo: (

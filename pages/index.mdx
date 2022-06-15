@@ -1,2 +1,74 @@
 
 # vuetronic
+Build Electron Application with Vue.js and Typescript
+
+## Features
+
+Bootstrap Electron Application in few lines with vuetronic.
+
+### Typescript Support
+Build your application with Typescript. Prevent errors and increase IDE integration with code completion.
+
+### Standardized api's
+Standardized api's to handle common uses cases such as upload a file, specify a folder to store data and more.
+
+### Based on electron forge
+Build on top of electron forge to package and distribute your application on Windows, MacOS and Linux.
+
+### Powerfull Command Line Tool
+Build your project during development, watch files with our Command Line Interface 
+
+## App Example
+
+```js
+// src/main.ts
+
+import { createVuetronicApp } from 'vuetronic'
+
+createVuetronicApp({ 
+    title: 'Vuetronic', 
+    width: 800, 
+    height: 600, 
+    openDevTools: false 
+})
+```
+
+```js
+// src/renderer.ts
+
+import { createApp } from 'vue'
+imort vuetronicUI from '@vuetronic/ui'
+import App from './ui/app.vue'
+
+createApp(App).use(vuetronicUI).mount('#app')
+
+```
+
+```html
+<!-- src/ui/app.vue -->
+
+<template>
+    <Layout>
+        <!-- your awesome app -->
+    </Layout>
+</template>
+```
+
+
+```js
+// src/preload.ts
+
+import { createVuetronicBrigdgeApi } from 'vuetronic'
+
+createVuetronicBrigdgeApi()
+
+```
+
+```js
+// rollup.config.js
+
+import { vuetronicConfig } from 'vuetronic'
+
+export default vuetronicConfig({})
+
+```

@@ -1,3 +1,6 @@
+import Callout from 'nextra-theme-docs/callout'
+
+
 # Application structure
 
 
@@ -78,6 +81,13 @@ example:
 ### components
 Your custom .vue files
 ### app.css
+We use `tailwindcss` and `postcss` to handle css styles.
+
+
+<Callout emoji="🗓">
+It is actually not possible to choose other UI librarie. This is planned for future release and will coming soon.
+</Callout>
+
 ```js
 @tailwind base;
 @tailwind components;
@@ -85,6 +95,7 @@ Your custom .vue files
 ```
 
 ### app.vue
+The root Vue component. To use our framless window use our custom `Layout` and `RenderView` component. But if you want you can simply remove them and implement your own roots components with ususal `<router-view>`. 
 
 ```html
 <template>
@@ -95,7 +106,7 @@ Your custom .vue files
 </template>
 ```
 ### router.ts
-
+As mentioned above `vue-router` is used to enable navigation between application screens. 
 ```js
 import { createRouter, createWebHashHistory } from 'vue-router'
 import Home from './views/Home.vue'
@@ -121,15 +132,17 @@ export default Router
 
 ## rollup.config.js
 We use rollup to build typescript src files to understandable commonjs.
+<Callout emoji="🗓">
+It is actually not possible to customize the build configuration. This is planned for future release and will coming soon.
+</Callout>
 
 ```js
 import { vuetronicConfig } from 'vuetronic'
 
-export default vuetronicConfig({
-    // currently not customizable, will coming soon
-})
+export default vuetronicConfig()
 ```
 ## vuetronic.config.js
+The configuration is passed to `electron-forge` to handle some bundle tasks.
 ```js
 module.exports = {
     packagerConfig: { 
@@ -170,6 +183,7 @@ module.exports = {
 }
 ```
 ## tailwind.config.js
+We also implement `tailwindcss` with no configuration needed. Feel free to adapt it to your project.
 ```js
 module.exports = {
   content: [
@@ -193,6 +207,7 @@ module.exports = {
 
 ```
 ## tsconfig.json
+Typescript configuration that extends the `@vuetronic/config/typescript/vuetronic`
 ```json
 {
   "extends": "@vuetronic/config/typescript/vuetronic.json",

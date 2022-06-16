@@ -1,0 +1,175 @@
+# Application structure
+
+
+
+
+## build
+Build files that will be used to bundle the application
+
+### bundle
+
+
+## src
+
+### main.ts
+Main entry file that electron use
+
+### renderer.ts
+Renderer electron file that handle user interface with Vue.js
+
+### preload.ts
+Preloaded script that expose `node` api's to be available in the renderer context using electron `exposeToMainWorld`
+
+## src/api
+
+More about this is coming soon.
+
+## src/ui
+ 
+### views
+
+Your application page with `.vue`
+
+example:
+```html
+<!--src/ui/views/Home.vue-->
+<template>
+    <View title="Home">
+        <!--Home View-->
+    </View>
+</template>
+```
+
+### components
+Your custom .vue files
+### app.css
+```js
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+```
+
+### app.vue
+
+```html
+<template>
+    <Layout>
+        <!--Under the hood this is the same as router-view -->
+        <RenderView/>
+    </Layout>
+</template>
+```
+### router.ts
+
+```js
+import { createRouter, createWebHashHistory } from 'vue-router'
+import Home from './views/Home.vue'
+
+const routes = [
+  { path: '/', component: Home },
+]
+
+const Router = createRouter({
+  history: createWebHashHistory(),
+  routes,
+})
+
+export default Router
+```
+
+### icon.png
+1024x1024 png file that will be used to generate application icons during the bundle stage.
+
+
+
+
+
+## rollup.config.js
+We use rollup to build typescript src files to understandable commonjs.
+
+```js
+import { vuetronicConfig } from 'vuetronic'
+
+export default vuetronicConfig({
+    // currently not customizable, will coming soon
+})
+```
+## vuetronic.config.js
+```js
+module.exports = {
+    packagerConfig: { 
+        icon: 'build/icons/icon',
+        asar: true,
+        ignore: [
+            "src/(?:(?!\.ts)(?:.|\n))*\.ts",
+            "src/(?:(?!\.html)(?:.|\n))*\.html",
+            "src/(?:(?!\.turbo)(?:.|\n))*\.turbo",
+            "src/api",
+            "src/ui",
+            ".github",
+            ".vscode",
+            "(?:(?!\.test\.ts)(?:.|\n))*\.test\.ts",
+            "src/(?:(?!/)(?:.|\n))*/(?:(?!\.ts)(?:.|\n))*\.ts",
+            "packages/(?:(?!/src)(?:.|\n))*/src",
+            "node_modules/.cache",
+            "node_modules/@babel",
+            "node_modules/@vue/",
+            "node_modules/vue/",
+            "node_modules/consola",
+            "node_modules/csstype",
+            "node_modules/simple-git",
+            "node_modules/postcss",
+            "node_modules/picocolors",
+            "node_modules/nanoid",
+            "node_modules/source-map",
+            "node_modules/source-map-js",
+            "node_modules/sourcemap-codec",
+        ]
+     },
+    electronRebuildConfig: {  },
+    makers: [  ],
+    publishers: [  ],
+    plugins: [],
+    hooks: {  },
+    buildIdentifier: 'vuetronic'
+}
+```
+## tailwind.config.js
+```js
+module.exports = {
+  content: [
+    './src/ui/**/*.{html,js,vue}',
+    './packages/ui/src/components/*.vue'
+  ],
+  theme: {
+    extend: {
+
+      colors: {
+        'bcolor': '#565D61',
+        'dark': '#000404',
+        'background': '#1F2C33',
+        'sidebar': '#14222B',
+        'title-bar': '#28333B'
+      }
+    },
+  },
+  plugins: [],
+}
+
+```
+## tsconfig.json
+```json
+{
+  "extends": "@vuetronic/config/typescript/vuetronic.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "outDir": "build",
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "tests/**/*"
+  ]
+}
+```

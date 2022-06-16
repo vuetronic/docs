@@ -12,13 +12,48 @@ Build files that will be used to bundle the application
 ## src
 
 ### main.ts
-Main entry file that electron use
+Main entry file that create an electron application.
+
+```js
+import { createVuetronicApp } from 'vuetronic'
+
+createVuetronicApp({
+    title: 'vuetronic',
+    width: 1300,
+    height: 600,
+    openDevTools: true,
+})
+
+```
 
 ### renderer.ts
-Renderer electron file that handle user interface with Vue.js
+Renderer file that handle user interface with Vue.js
+
+``` js
+import { createApp } from 'vue';
+import  vuetronicUI from '@vuetronic/ui'
+import App from './ui/app.vue'
+import Router from './ui/router'
+
+/**
+ * Create vue application instance
+ */
+createApp(App)
+    .use(vuetronicUI)
+    .use(Router)
+    .mount('#app')
+
+```
 
 ### preload.ts
 Preloaded script that expose `node` api's to be available in the renderer context using electron `exposeToMainWorld`
+
+``` js
+import { createVuetronicBrigdgeApi } from 'vuetronic'
+
+createVuetronicBrigdgeApi()
+
+```
 
 ## src/api
 

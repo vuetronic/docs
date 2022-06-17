@@ -144,42 +144,16 @@ export default vuetronicConfig()
 ## vuetronic.config.js
 The configuration is passed to `electron-forge` to handle some bundle tasks.
 ```js
+const  packagerConfig = require('@vuetronic/config/vuetronic/packager')
+
 module.exports = {
-    packagerConfig: { 
-        icon: 'build/icons/icon',
-        asar: true,
-        ignore: [
-            "src/(?:(?!\.ts)(?:.|\n))*\.ts",
-            "src/(?:(?!\.html)(?:.|\n))*\.html",
-            "src/(?:(?!\.turbo)(?:.|\n))*\.turbo",
-            "src/api",
-            "src/ui",
-            ".github",
-            ".vscode",
-            "(?:(?!\.test\.ts)(?:.|\n))*\.test\.ts",
-            "src/(?:(?!/)(?:.|\n))*/(?:(?!\.ts)(?:.|\n))*\.ts",
-            "packages/(?:(?!/src)(?:.|\n))*/src",
-            "node_modules/.cache",
-            "node_modules/@babel",
-            "node_modules/@vue/",
-            "node_modules/vue/",
-            "node_modules/consola",
-            "node_modules/csstype",
-            "node_modules/simple-git",
-            "node_modules/postcss",
-            "node_modules/picocolors",
-            "node_modules/nanoid",
-            "node_modules/source-map",
-            "node_modules/source-map-js",
-            "node_modules/sourcemap-codec",
-        ]
-     },
+    buildIdentifier: 'vuetronic',
+    packagerConfig: packagerConfig,
     electronRebuildConfig: {  },
     makers: [  ],
     publishers: [  ],
     plugins: [],
     hooks: {  },
-    buildIdentifier: 'vuetronic'
 }
 ```
 ## tailwind.config.js

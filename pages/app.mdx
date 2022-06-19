@@ -128,19 +128,6 @@ export default Router
 
 
 
-
-
-## rollup.config.js
-We use rollup to build typescript src files to understandable commonjs.
-<Callout emoji="🗓">
-It is actually not possible to customize the build configuration. This is planned for future release and will coming soon.
-</Callout>
-
-```js
-import { vuetronicConfig } from 'vuetronic'
-
-export default vuetronicConfig()
-```
 ## vuetronic.config.js
 The configuration is passed to `electron-forge` to handle some bundle tasks.
 ```js
